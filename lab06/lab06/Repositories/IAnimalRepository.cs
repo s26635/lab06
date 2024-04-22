@@ -5,7 +5,7 @@ namespace lab06.Repositories;
 
 public interface IAnimalRepository
 {
-    IList<Animal> GetAnimals(string orderBy);
+    IList<Animal> GetAnimals();
 
     Animal GetAnimal(int id);
 

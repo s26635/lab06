@@ -15,7 +15,14 @@ internal class AnimalService : IAnimalService
 
     public IList<Animal> GetAnimals(string orderBy)
     {
-        return _animalRepository.GetAnimals(orderBy);
+        List<Animal> list = (List<Animal>)_animalRepository.GetAnimals();
+
+        switch (orderBy)
+        {
+            
+        }
+        
+        return list;
     }
     
 
