@@ -5,7 +5,7 @@ namespace lab06.Services;
 
 public interface IAnimalService
 {
-    IList<Animal> GetAnimals(string orderBy);
+    IOrderedEnumerable<Animal> GetAnimals(string orderBy);
 
     Animal GetAnimal(int id);
 

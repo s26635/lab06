@@ -90,7 +90,23 @@ public class AnimalRepository : IAnimalRepository
 
     public void UpdateAnimal(int idAnimal, AnimalDTO animalDTO)
     {
-        throw new NotImplementedException();
+        string connectionString = "Data Source=db-mssql16.pjwstk.edu.pl;Initial Catalog=2019SBD;Integrated Security=True;TrustServerCertificate=True";
+
+        string query = "UPDATE Animal SET Name=@name, Description=@description, Category=@category, Area=@area WHERE IdAnimal=@idAnimal";
+        using (SqlConnection connection = new SqlConnection(connectionString))
+        {
+            connection.Open();
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@idAnimal", idAnimal);
+                command.Parameters.AddWithValue("@name", animalDTO.Name);
+                command.Parameters.AddWithValue("@description", animalDTO.Description);
+                command.Parameters.AddWithValue("@category", animalDTO.Category);
+                command.Parameters.AddWithValue("@area", animalDTO.Area);
+                command.ExecuteReader();
+            }
+        }
+
     }
 
     public void DeleteAnimal(int id)

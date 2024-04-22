@@ -13,16 +13,21 @@ internal class AnimalService : IAnimalService
         _animalRepository = animalRepository;
     }
 
-    public IList<Animal> GetAnimals(string orderBy)
+    public IOrderedEnumerable<Animal> GetAnimals(string orderBy)
     {
-        List<Animal> list = (List<Animal>)_animalRepository.GetAnimals();
-
-        switch (orderBy)
-        {
-            
-        }
+        IList<Animal> animals = _animalRepository.GetAnimals();
         
-        return _animalRepository.GetAnimals();
+        switch (orderBy.ToLower())
+        {
+            case "description":
+                return animals.OrderBy(a => a.Description);
+            case "category":
+                return animals.OrderBy(a => a.Category);
+            case "area":
+                return animals.OrderBy(a => a.Area);
+            default:
+                return animals.OrderBy(a => a.Name);
+        }
     }
     
 
