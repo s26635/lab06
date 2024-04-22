@@ -22,7 +22,7 @@ internal class AnimalService : IAnimalService
             
         }
         
-        return list;
+        return _animalRepository.GetAnimals();
     }
     
 
